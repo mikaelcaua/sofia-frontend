@@ -1,8 +1,9 @@
 'use client'
 
-import { BrButton, BrCheckbox, BrInput, BrMessage } from '@govbr-ds/webcomponents-react'
+import {BrCheckbox, BrInput, BrMessage } from '@govbr-ds/webcomponents-react'
 import { useState } from 'react'
 import BrButtonCustomize from '../br_button_customize'
+import Link from 'next/link'
 
 type LoginData = {
   nameOrEmail: string
@@ -26,18 +27,43 @@ interface Props {
 export default function LoginForm({ onLogin }: Props) {
   const [values, setValues] = useState<LoginData>(initialLoginData)
   const [errors, setErrors] = useState<LoginData>(initialLoginErrors)
-  const [message, setMessage] = useState({ message: '', state: '', show: false })
+
+  const validateCPF = (cpf: string) => {
+    cpf = cpf.replace(/[^\d]/g, '')
+    if (cpf.length !== 11) return false
+    if (/^(\d)\1{10}$/.test(cpf)) return false
+    
+    let sum = 0
+    for (let i = 0; i < 9; i++) {
+      sum += parseInt(cpf.charAt(i)) * (10 - i)
+    }
+    let remainder = 11 - (sum % 11)
+    if (remainder === 10 || remainder === 11) remainder = 0
+    if (remainder !== parseInt(cpf.charAt(9))) return false
+    
+    sum = 0
+    for (let i = 0; i < 10; i++) {
+      sum += parseInt(cpf.charAt(i)) * (11 - i)
+    }
+    remainder = 11 - (sum % 11)
+    if (remainder === 10 || remainder === 11) remainder = 0
+    if (remainder !== parseInt(cpf.charAt(10))) return false
+    
+    return true
+  }
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+
+  const validatePassword = (password: string) => {
+    if (password.length < 8) return 'A senha deve ter pelo menos 8 caracteres'
+    return ''
+  }
 
   const handleChange = (field: keyof LoginData, value: string) => {
     setValues((prev) => ({ ...prev, [field]: value }))
-  }
-
-  const validateField = (field: keyof LoginData, value: string) => {
-    let error = ''
-    if (!value) {
-      error = field === 'nameOrEmail' ? 'Email ou CPF é obrigatório' : 'Senha é obrigatória'
-    }
-    setErrors((prev) => ({ ...prev, [field]: error }))
   }
 
   const validateForm = () => {
@@ -47,30 +73,43 @@ export default function LoginForm({ onLogin }: Props) {
     if (!values.nameOrEmail) {
       newErrors.nameOrEmail = 'Email ou CPF é obrigatório'
       isValid = false
+    } else {
+      const cleanValue = values.nameOrEmail.replace(/[^\d]/g, '')
+      const isNumericOnly = cleanValue === values.nameOrEmail.replace(/[.\-]/g, '')
+      
+      if (isNumericOnly && cleanValue.length >= 10) {
+        if (!validateCPF(values.nameOrEmail)) {
+          newErrors.nameOrEmail = 'CPF inválido'
+          isValid = false
+        }
+      } else if (values.nameOrEmail.includes('@')) {
+        if (!validateEmail(values.nameOrEmail)) {
+          newErrors.nameOrEmail = 'Email inválido'
+          isValid = false
+        }
+      } else {
+        newErrors.nameOrEmail = 'Digite um email válido ou CPF válido'
+        isValid = false
+      }
     }
+
     if (!values.password) {
       newErrors.password = 'Senha é obrigatória'
       isValid = false
+    } else {
+      const passwordError = validatePassword(values.password)
+      if (passwordError) {
+        newErrors.password = passwordError
+        isValid = false
+      }
     }
 
     setErrors(newErrors)
     return isValid
   }
 
-  const handleBlur = (field: keyof LoginData) => {
-    validateField(field, values[field])
-  }
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-
-    if (validateForm()) {
-      setMessage({ message: 'Login realizado com sucesso!', state: 'success', show: true })
-      if (onLogin) onLogin(values)
-      console.log('Login:', values)
-    } else {
-      setMessage({ message: 'Por favor, corrija os erros.', state: 'danger', show: true })
-    }
   }
 
   const renderErrors = (error: string) =>
@@ -81,8 +120,8 @@ export default function LoginForm({ onLogin }: Props) {
     )
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col max-w-md mx-auto mt-10 space-y-4 min-w-[300px] items-center justify-center">
-      <h2 className="self-start">Identifique-se com:</h2>
+    <form onSubmit={handleSubmit} className="flex flex-col max-w-md space-y-4 min-w-[300px] items-center justify-center">
+      <h2 className="self-start text-[1.5rem]">Identifique-se com:</h2>
 
       <BrInput
         className="min-w-72 w-full"
@@ -92,7 +131,6 @@ export default function LoginForm({ onLogin }: Props) {
         label="Email / CPF"
         value={values.nameOrEmail}
         onInput={(e: any) => handleChange('nameOrEmail', e.target.value)}
-        onBlur={() => handleBlur('nameOrEmail')}
         state={errors.nameOrEmail ? 'danger' : undefined}
       />
       {renderErrors(errors.nameOrEmail)}
@@ -105,12 +143,11 @@ export default function LoginForm({ onLogin }: Props) {
         label="Senha"
         value={values.password}
         onInput={(e: any) => handleChange('password', e.target.value)}
-        onBlur={() => handleBlur('password')}
         state={errors.password ? 'danger' : undefined}
       />
       {renderErrors(errors.password)}
-
-      <BrButtonCustomize emphasis='primary' className="w-full">
+  
+      <BrButtonCustomize emphasis='primary' className="w-full" type="submit">
         Entrar
       </BrButtonCustomize>
 
@@ -124,13 +161,11 @@ export default function LoginForm({ onLogin }: Props) {
         name="manter conectado"
         aria-label="Mantenha-me conectado" />
 
-
-      <BrButton type="button" emphasis="tertiary" className="self-start">
+      <Link href="/auth/forgot-password" className="self-start text-secondary-blue hover:text-blue-600 transition-colors duration-200">
         Esqueceu sua senha?
-      </BrButton>
+      </Link>
 
-
-      <BrButtonCustomize emphasis='secondary' className="w-full">
+      <BrButtonCustomize emphasis='secondary' className="w-full" type="submit">
         Registre-se agora!
       </BrButtonCustomize>
 

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Header() {
     return (
-        <header className="flex items-center p-4 bg-white shadow-md">
+        <header className="flex items-center p-4 shadow-md">
             <div className="flex-shrink-0">
                 <Image
                     src="/images/logos/sofia_logo.svg"
@@ -16,10 +16,10 @@ export default function Header() {
 
             <div className="flex flex-col w-full ml-4 gap-1">
                 <div className="flex justify-between items-center">
-                    <h1 className="text-2xl text-gray-800">SOFIA</h1>
+                    <h1 className="text-[2rem]">SOFIA</h1>
 
-                    <div className="flex items-center gap-10">
-                        <nav className="flex gap-4">
+                    <div className="flex items-center pr-10 gap-10">
+                        <nav className="flex gap-4 pr-16">
                             <Link href="#" className="text-secondary-blue hover:text-blue-600 transition-colors duration-200">
                                 Link de acesso 1
                             </Link>
@@ -34,7 +34,7 @@ export default function Header() {
                             </Link>
                         </nav>
 
-                        <ul className="flex gap-4 text-gray-700">
+                        <ul className="flex gap-4">
                             <Image
                                 src="/images/icons/phone_icon.svg"
                                 alt="Logo Sofia"
@@ -46,7 +46,7 @@ export default function Header() {
                     </div>
                 </div>
 
-                <h1 className="text-xl text-gray-700">Sistema Online de Fortalecimento Interativo para Atenção Primária</h1>
+                <h1 className="text-[2rem] ">Sistema Online de Fortalecimento Interativo para Atenção Primária</h1>
 
             </div>
         </header>
