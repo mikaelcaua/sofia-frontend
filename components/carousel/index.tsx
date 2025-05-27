@@ -17,17 +17,17 @@ export default function ImageCarousel({ items }: CarouselProps) {
     {
       id: 1,
       imageUrl: '/images/auth/sofia_advertisement.png',
-      alt: 'Página 1'
+      alt: 'Anúncio Sofia App'
     },
     {
       id: 2,
       imageUrl: '/images/auth/sofia_advertisement.png',
-      alt: 'Página 2'
+      alt: 'Anúncio Sofia App'
     },
   ]
 
-  const carouselItems = items || defaultItems
-  const [current, setCurrent] = useState(0)
+  const carouselItems = items || defaultItems;
+  const [current, setCurrent] = useState(0);
 
   const prev = () => {
     setCurrent((prevIndex) => (prevIndex === 0 ? carouselItems.length - 1 : prevIndex - 1))
@@ -42,8 +42,8 @@ export default function ImageCarousel({ items }: CarouselProps) {
   }
 
   return (
-    <div className="w-full max-w-4xl">
-      <div className="relative overflow-hidden h-[300px]">
+    <div className="w-full max-w-6xl">
+      <div className="relative overflow-hidden h-[500px]">
         <div
           className="flex transition-transform duration-500 ease-in-out h-full"
           style={{ transform: `translateX(-${current * 100}%)` }}
@@ -52,8 +52,8 @@ export default function ImageCarousel({ items }: CarouselProps) {
             <div key={item.id} className="min-w-full h-full flex items-center justify-center">
               <Image 
                 src={item.imageUrl} 
-                width={400} 
-                height={300} 
+                width={500} 
+                height={700} 
                 alt={item.alt}
                 className="object-contain max-h-full"
               />

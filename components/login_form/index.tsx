@@ -2,6 +2,7 @@
 
 import { BrButton, BrCheckbox, BrInput, BrMessage } from '@govbr-ds/webcomponents-react'
 import { useState } from 'react'
+import BrButtonCustomize from '../br_button_customize'
 
 type LoginData = {
   nameOrEmail: string
@@ -109,13 +110,13 @@ export default function LoginForm({ onLogin }: Props) {
       />
       {renderErrors(errors.password)}
 
-      <BrButton type="submit" emphasis="primary" >
+      <BrButtonCustomize emphasis='primary' className="w-full">
         Entrar
-      </BrButton>
+      </BrButtonCustomize>
 
-      <BrButton type="button" emphasis="primary">
+      <BrButtonCustomize emphasis='primary' className="w-full">
         Entrar com gov.br
-      </BrButton>
+      </BrButtonCustomize>
 
       <BrCheckbox
         className="self-end"
@@ -129,9 +130,9 @@ export default function LoginForm({ onLogin }: Props) {
       </BrButton>
 
 
-      <BrButton type="button" emphasis="secondary">
+      <BrButtonCustomize emphasis='secondary' className="w-full">
         Registre-se agora!
-      </BrButton>
+      </BrButtonCustomize>
 
       <p className="text-center">Se você é profissional da saúde de uma UBS no estado do Maranhão, faça o seu registro e comece a usar a nossa plataforma de teleconsultoria.</p>
     </form>
