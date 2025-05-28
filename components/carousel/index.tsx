@@ -44,7 +44,7 @@ export default function ImageCarousel({ items }: CarouselProps) {
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-md">
       <div className="w-full max-h-[50rem] flex items-center justify-center rounded-lg overflow-hidden">
-        <Image
+        <Image unoptimized
           src={carouselItems[current].imageUrl}
           width={500}
           height={700}
@@ -56,7 +56,7 @@ export default function ImageCarousel({ items }: CarouselProps) {
       <div className="flex items-center justify-center mt-6 gap-6">
         <button
           onClick={prev}
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:shadow-lg text-gray-600 hover:text-gray-800 transition-all duration-200"
+          className="flex items-center justify-center w-10 h-10 rounded-full text-[#1351B4] hover:text-[#1351B4] transition-all duration-200"
           aria-label="Página anterior"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,8 +70,8 @@ export default function ImageCarousel({ items }: CarouselProps) {
               key={index}
               onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-200 ${current === index
-                  ? 'bg-blue-600 scale-110'
-                  : 'bg-gray-300 hover:bg-gray-400'
+                ? 'bg-blue-600 scale-110'
+                : 'bg-gray-300 hover:bg-gray-400'
                 }`}
               aria-label={`Ir para página ${index + 1}`}
             />
@@ -80,7 +80,7 @@ export default function ImageCarousel({ items }: CarouselProps) {
 
         <button
           onClick={next}
-          className="flex items-center justify-center w-10 h-10 rounded-full shadow-md hover:shadow-lg text-gray-600 hover:text-gray-800 transition-all duration-200"
+          className="flex items-center justify-center w-10 h-10 rounded-full text-[#1351B4] hover:text-[#1351B4] transition-all duration-200"
           aria-label="Próxima página"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -1,15 +1,9 @@
 'use client'
+import RoleInterface from '@/interfaces/role_interface';
 import React, { useState } from 'react';
 
-interface Role {
-  id: number;
-  name: string;
-  status: 'SIM' | 'NÃO';
-  description: string;
-}
-
 const RoleSelectionScreen = () => {
-  const [roles] = useState<Role[]>([
+  const [roles] = useState<RoleInterface[]>([
     {
       id: 1,
       name: 'Solicitante',

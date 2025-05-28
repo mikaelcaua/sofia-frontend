@@ -3,21 +3,22 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { AuthProvider } from "@/context/auth_context";
 
 const rawline = localFont({
   src: [
     {
-      path: "../public/fonts/Rawline/rawline-100.ttf", 
+      path: "../public/fonts/Rawline/rawline-100.ttf",
       weight: "100",
       style: "normal",
     },
     {
-      path: "../public/fonts/Rawline/rawline-200.ttf", 
+      path: "../public/fonts/Rawline/rawline-200.ttf",
       weight: "200",
       style: "normal",
     },
     {
-      path: "../public/fonts/Rawline/rawline-300.ttf", 
+      path: "../public/fonts/Rawline/rawline-300.ttf",
       weight: "300",
       style: "normal",
     },
@@ -27,68 +28,68 @@ const rawline = localFont({
       style: "normal",
     },
     {
-      path: "../public/fonts/Rawline/rawline-500.ttf", 
+      path: "../public/fonts/Rawline/rawline-500.ttf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../public/fonts/Rawline/rawline-600.ttf", 
+      path: "../public/fonts/Rawline/rawline-600.ttf",
       weight: "600",
       style: "normal",
     },
     {
-      path: "../public/fonts/Rawline/rawline-700.ttf", 
+      path: "../public/fonts/Rawline/rawline-700.ttf",
       weight: "700",
       style: "normal",
     },
     {
-      path: "../public/fonts/Rawline/rawline-800.ttf", 
+      path: "../public/fonts/Rawline/rawline-800.ttf",
       weight: "800",
       style: "normal",
     },
     {
-      path: "../public/fonts/Rawline/rawline-900.ttf", 
+      path: "../public/fonts/Rawline/rawline-900.ttf",
       weight: "900",
       style: "normal",
     },
 
     {
-      path: "../public/fonts/Rawline/rawline-100i.ttf", 
+      path: "../public/fonts/Rawline/rawline-100i.ttf",
       weight: "100",
       style: "italic",
     },
     {
-      path: "../public/fonts/Rawline/rawline-200i.ttf", 
+      path: "../public/fonts/Rawline/rawline-200i.ttf",
       weight: "200",
       style: "italic",
     },
     {
-      path: "../public/fonts/Rawline/rawline-300i.ttf", 
+      path: "../public/fonts/Rawline/rawline-300i.ttf",
       weight: "300",
       style: "italic",
     },
     {
-      path: "../public/fonts/Rawline/rawline-400i.ttf", 
+      path: "../public/fonts/Rawline/rawline-400i.ttf",
       weight: "400",
       style: "italic",
     },
     {
-      path: "../public/fonts/Rawline/rawline-500i.ttf", 
+      path: "../public/fonts/Rawline/rawline-500i.ttf",
       weight: "500",
       style: "italic",
     },
     {
-      path: "../public/fonts/Rawline/rawline-600i.ttf", 
+      path: "../public/fonts/Rawline/rawline-600i.ttf",
       weight: "600",
       style: "italic",
     },
     {
-      path: "../public/fonts/Rawline/rawline-700i.ttf", 
+      path: "../public/fonts/Rawline/rawline-700i.ttf",
       weight: "700",
       style: "italic",
     },
     {
-      path: "../public/fonts/Rawline/rawline-800i.ttf", 
+      path: "../public/fonts/Rawline/rawline-800i.ttf",
       weight: "800",
       style: "italic",
     },
@@ -115,9 +116,11 @@ export default function RootLayout({
   return (
     <html lang="pt-br" className={`${rawline.variable}`}>
       <body className="font-rawline">
-        <Header />
-        {children}
-        <Footer/>
+        <AuthProvider>
+          <Header />
+          {children}
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
