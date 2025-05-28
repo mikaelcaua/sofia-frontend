@@ -109,8 +109,12 @@ export default function LoginForm({ onLogin }: Props) {
   }
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  e.preventDefault()
+
+  if (validateForm()) {
+    onLogin?.(values)
   }
+}
 
   const renderErrors = (error: string) =>
     error && (
