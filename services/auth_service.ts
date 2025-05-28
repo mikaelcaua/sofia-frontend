@@ -7,7 +7,14 @@ export default class AuthService {
         email:'',
         id:0,
         name:'',
-        roles: []
+        roles: [
+            {
+              id: 1,
+              name: 'Solicitante',
+              status: 'SIM',
+              description: 'Solicitante'
+            }
+          ]
     }
   }
 

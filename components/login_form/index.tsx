@@ -1,27 +1,27 @@
 'use client'
 
-import {BrCheckbox, BrInput, BrMessage } from '@govbr-ds/webcomponents-react'
+import { BrCheckbox, BrInput, BrMessage } from '@govbr-ds/webcomponents-react'
 import { useState } from 'react'
 import BrButtonCustomize from '../br_button_customize'
 import Link from 'next/link'
 
 type LoginData = {
-  nameOrEmail: string
+  cpfOrEmail: string
   password: string
 }
 
 const initialLoginData: LoginData = {
-  nameOrEmail: '',
+  cpfOrEmail: '',
   password: '',
 }
 
 const initialLoginErrors: LoginData = {
-  nameOrEmail: '',
+  cpfOrEmail: '',
   password: '',
 }
 
 interface Props {
-  onLogin?: (values: LoginData) => void
+  onLogin: (emailOrCpf: string, password: string) => void
 }
 
 export default function LoginForm({ onLogin }: Props) {
@@ -32,7 +32,7 @@ export default function LoginForm({ onLogin }: Props) {
     cpf = cpf.replace(/[^\d]/g, '')
     if (cpf.length !== 11) return false
     if (/^(\d)\1{10}$/.test(cpf)) return false
-    
+
     let sum = 0
     for (let i = 0; i < 9; i++) {
       sum += parseInt(cpf.charAt(i)) * (10 - i)
@@ -40,7 +40,7 @@ export default function LoginForm({ onLogin }: Props) {
     let remainder = 11 - (sum % 11)
     if (remainder === 10 || remainder === 11) remainder = 0
     if (remainder !== parseInt(cpf.charAt(9))) return false
-    
+
     sum = 0
     for (let i = 0; i < 10; i++) {
       sum += parseInt(cpf.charAt(i)) * (11 - i)
@@ -48,7 +48,7 @@ export default function LoginForm({ onLogin }: Props) {
     remainder = 11 - (sum % 11)
     if (remainder === 10 || remainder === 11) remainder = 0
     if (remainder !== parseInt(cpf.charAt(10))) return false
-    
+
     return true
   }
 
@@ -70,25 +70,25 @@ export default function LoginForm({ onLogin }: Props) {
     const newErrors = { ...initialLoginErrors }
     let isValid = true
 
-    if (!values.nameOrEmail) {
-      newErrors.nameOrEmail = 'Email ou CPF é obrigatório'
+    if (!values.cpfOrEmail) {
+      newErrors.cpfOrEmail = 'Email ou CPF é obrigatório'
       isValid = false
     } else {
-      const cleanValue = values.nameOrEmail.replace(/[^\d]/g, '')
-      const isNumericOnly = cleanValue === values.nameOrEmail.replace(/[.\-]/g, '')
-      
+      const cleanValue = values.cpfOrEmail.replace(/[^\d]/g, '')
+      const isNumericOnly = cleanValue === values.cpfOrEmail.replace(/[.\-]/g, '')
+
       if (isNumericOnly && cleanValue.length >= 10) {
-        if (!validateCPF(values.nameOrEmail)) {
-          newErrors.nameOrEmail = 'CPF inválido'
+        if (!validateCPF(values.cpfOrEmail)) {
+          newErrors.cpfOrEmail = 'CPF inválido'
           isValid = false
         }
-      } else if (values.nameOrEmail.includes('@')) {
-        if (!validateEmail(values.nameOrEmail)) {
-          newErrors.nameOrEmail = 'Email inválido'
+      } else if (values.cpfOrEmail.includes('@')) {
+        if (!validateEmail(values.cpfOrEmail)) {
+          newErrors.cpfOrEmail = 'Email inválido'
           isValid = false
         }
       } else {
-        newErrors.nameOrEmail = 'Digite um email válido ou CPF válido'
+        newErrors.cpfOrEmail = 'Digite um email válido ou CPF válido'
         isValid = false
       }
     }
@@ -110,6 +110,7 @@ export default function LoginForm({ onLogin }: Props) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    if (validateForm()) onLogin(values.cpfOrEmail, values.password)
   }
 
   const renderErrors = (error: string) =>
@@ -126,14 +127,14 @@ export default function LoginForm({ onLogin }: Props) {
       <BrInput
         className="min-w-72 w-full"
         type="text"
-        id="nameOrEmail"
+        id="cpfOrEmail"
         placeholder="Entre com seu email ou CPF"
         label="Email / CPF"
-        value={values.nameOrEmail}
-        onInput={(e: any) => handleChange('nameOrEmail', e.target.value)}
-        state={errors.nameOrEmail ? 'danger' : undefined}
+        value={values.cpfOrEmail}
+        onInput={(e: any) => handleChange('cpfOrEmail', e.target.value)}
+        state={errors.cpfOrEmail ? 'danger' : undefined}
       />
-      {renderErrors(errors.nameOrEmail)}
+      {renderErrors(errors.cpfOrEmail)}
 
       <BrInput
         className="min-w-72 w-full"
@@ -146,7 +147,7 @@ export default function LoginForm({ onLogin }: Props) {
         state={errors.password ? 'danger' : undefined}
       />
       {renderErrors(errors.password)}
-  
+
       <BrButtonCustomize emphasis='primary' className="w-full" type="submit">
         Entrar
       </BrButtonCustomize>

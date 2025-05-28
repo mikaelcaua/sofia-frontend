@@ -9,11 +9,16 @@ const AuthContext = createContext<AuthContextInterface | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null)
-    const authService:AuthService = new AuthService()
-    
+    const authService: AuthService = new AuthService()
+
     const login = (email: string, password: string) => {
-        const userData = authService.login(email, password)
-        setUser(userData)
+        try {
+            const userData = authService.login(email, password)
+            setUser(userData)
+            return true
+        } catch (error) {
+            return false
+        }
     }
 
     const logout = () => {
