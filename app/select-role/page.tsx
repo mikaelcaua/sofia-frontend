@@ -13,7 +13,7 @@ const RoleSelectionScreen = () => {
 
   const goToRoleSelect = (roleId: number,) => {
     setSelectedRole(roleId);
-    router.push("/");
+    router.push("/teleconsulting");
   };
 
   return (
