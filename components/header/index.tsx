@@ -19,7 +19,7 @@ export default function Header() {
                     <h1 className="text-[2rem]">SOFIA</h1>
 
                     <div className="flex items-center pr-10 gap-10">
-                        <nav className="flex gap-4 pr-16">
+                        <nav className="flex text-[1rem] gap-4 pr-16">
                             <Link href="#" className="text-secondary-blue hover:text-blue-600 transition-colors duration-200">
                                 Link de acesso 1
                             </Link>

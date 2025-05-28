@@ -24,7 +24,7 @@ interface Props {
   onLogin: (emailOrCpf: string, password: string) => void
 }
 
-export default function LoginForm({ onLogin }: Props) {
+export function LoginForm({ onLogin }: Props) {
   const [values, setValues] = useState<LoginData>(initialLoginData)
   const [errors, setErrors] = useState<LoginData>(initialLoginErrors)
 

@@ -12,7 +12,7 @@ interface CarouselProps {
   items?: CarouselItem[]
 }
 
-export default function ImageCarousel({ items }: CarouselProps) {
+export function ImageCarousel({ items }: CarouselProps) {
   const defaultItems: CarouselItem[] = [
     {
       id: 1,

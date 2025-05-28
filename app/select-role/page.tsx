@@ -1,17 +1,19 @@
 'use client'
 import { useAuth } from '@/context/auth_context';
-import RoleInterface from '@/interfaces/role_interface';
+import {RoleInterface} from '@/interfaces/role_interface';
 import React, { useState } from 'react';
+import { useRouter } from "next/navigation";
 
 const RoleSelectionScreen = () => {
-    
+  const router = useRouter();
   const { user } = useAuth();
   const roles: RoleInterface[] = user?.roles || [];
 
   const [selectedRole, setSelectedRole] = useState<number | null>(null);
 
-  const handleRoleSelect = (roleId: number) => {
+  const goToRoleSelect = (roleId: number,) => {
     setSelectedRole(roleId);
+    router.push("/");
   };
 
   return (
@@ -55,7 +57,7 @@ const RoleSelectionScreen = () => {
 
               <div className="flex-1 flex justify-center">
                 <button
-                  onClick={() => handleRoleSelect(role.id)}
+                  onClick={() => goToRoleSelect(role.id)}
                   className="px-4 py-2 rounded-md text-sm transition-colors bg-blue-500 text-white hover:bg-blue-600">
                   Selecionar
                 </button>

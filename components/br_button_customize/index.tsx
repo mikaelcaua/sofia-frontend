@@ -9,7 +9,7 @@ interface BRButtonProps {
     className?: string;
 }
 
-const BRButton: React.FC<BRButtonProps> = ({
+const BrButtonCustomize: React.FC<BRButtonProps> = ({
     type = 'button',
     children,
     emphasis = 'primary',
@@ -37,4 +37,4 @@ const BRButton: React.FC<BRButtonProps> = ({
     );
 };
 
-export default BRButton;
+export default BrButtonCustomize;
