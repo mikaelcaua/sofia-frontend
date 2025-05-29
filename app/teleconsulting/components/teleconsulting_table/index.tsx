@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { RequestInterface } from '@/interfaces/request_interface';
+import { SolicitationInterface } from '@/interfaces/solicitation_interface';
 import { TableFilter } from '../table_filter';
 import { PaginationControls } from '../pagination_controls';
 
@@ -16,7 +16,7 @@ export interface TeleconsultingFilters {
 }
 
 interface TeleconsultingTableProps {
-  data: RequestInterface[];
+  data: SolicitationInterface[];
   filters: TeleconsultingFilters;
   onFilterChange: (field: keyof TeleconsultingFilters, value: string) => void;
   currentPage: number;
@@ -40,7 +40,7 @@ export const TeleconsultingTable: React.FC<TeleconsultingTableProps> = ({
   idOptions,
   statusOptions
 }) => {
-  const getStatusBadge = (status: RequestInterface['status']) => {
+  const getStatusBadge = (status: SolicitationInterface['status']) => {
     const baseClasses = ' py-2 w-[9rem] rounded-md text-xs font-medium inline-block text-white flex items-center justify-center';
     switch (status) {
       case 'Avaliada':
@@ -65,7 +65,7 @@ export const TeleconsultingTable: React.FC<TeleconsultingTableProps> = ({
         <table className="w-full">
           <thead className="bg-gray-50">
             <tr>
-              <th className="text-left p-4 font-medium text-gray-900">
+              <th className="text-left p-4 font-medium ">
                 <TableFilter
                   label="ID"
                   value={filters.id}
@@ -74,7 +74,7 @@ export const TeleconsultingTable: React.FC<TeleconsultingTableProps> = ({
                   type="select"
                 />
               </th>
-              <th className="text-left p-4 font-medium text-gray-900">
+              <th className="text-left p-4 font-medium">
                 <TableFilter
                   label="Status"
                   value={filters.status}
@@ -83,28 +83,28 @@ export const TeleconsultingTable: React.FC<TeleconsultingTableProps> = ({
                   type="select"
                 />
               </th>
-              <th className="text-left p-4 font-medium text-gray-900">
+              <th className="text-left p-4 font-medium ">
                 <TableFilter
                   label="Solicitação"
                   value={filters.solicitation}
                   onChange={(value) => onFilterChange('solicitation', value)}
                 />
               </th>
-              <th className="text-left p-4 font-medium text-gray-900">
+              <th className="text-left p-4 font-medium ">
                 <TableFilter
                   label="Resposta"
                   value={filters.response}
                   onChange={(value) => onFilterChange('response', value)}
                 />
               </th>
-              <th className="text-left p-4 font-medium text-gray-900">
+              <th className="text-left p-4 font-medium ">
                 <TableFilter
                   label="Respondida em"
                   value={filters.respondedAt}
                   onChange={(value) => onFilterChange('respondedAt', value)}
                 />
               </th>
-              <th className="text-left p-4 font-medium text-gray-900">
+              <th className="text-left p-4 font-medium ">
                 <TableFilter
                   label="Atualizada em"
                   value={filters.updatedAt}
@@ -137,13 +137,13 @@ export const TeleconsultingTable: React.FC<TeleconsultingTableProps> = ({
                       {item.response || 'N/A'}
                     </Link>
                   </td>
-                  <td className="p-4 text-gray-700">{item.respondedAt || 'N/A'}</td>
-                  <td className="p-4 text-gray-700">{item.updatedAt || 'N/A'}</td>
+                  <td className="p-4">{item.respondedAt || 'N/A'}</td>
+                  <td className="p-4">{item.updatedAt || 'N/A'}</td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={6} className="p-4 text-center text-gray-500">
+                <td colSpan={6} className="p-4 text-center">
                   Nenhuma solicitação encontrada com os filtros aplicados.
                 </td>
               </tr>

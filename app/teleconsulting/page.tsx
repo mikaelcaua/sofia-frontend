@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { RequestInterface } from '@/interfaces/request_interface';
+import { SolicitationInterface } from '@/interfaces/solicitation_interface';
 import { useAuth } from '@/context/auth_context';
 import { TeleconsultingHeader } from './components/teleconsulting_header';
 import { TabDefinition, TabKey, TeleconsultingTabs } from './components/teleconsulting_tabs';
@@ -18,7 +18,7 @@ const initialFilters: TeleconsultingFilters = {
 
 const TeleconsultingPage = () => {
   const { user } = useAuth();
-  const MOCK_DATA: RequestInterface[] = user?.requests || [];
+  const MOCK_DATA: SolicitationInterface[] = user?.solicitations || [];
 
   const [activeTab, setActiveTab] = useState<TabKey>('respondidas');
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -59,7 +59,7 @@ const TeleconsultingPage = () => {
         const filterValue = filters[key];
         if (!filterValue) return true;
 
-        const itemValue = String(item[key as keyof RequestInterface] ?? '').toLowerCase();
+        const itemValue = String(item[key as keyof SolicitationInterface] ?? '').toLowerCase();
         return itemValue.includes(filterValue.toLowerCase());
       });
     });
@@ -102,7 +102,7 @@ const TeleconsultingPage = () => {
   return (
     <main className="w-full px-4 py-6 min-h-screen flex flex-col gap-6">
       <TeleconsultingHeader activeTabLabel={activeTabLabel} />
-      
+
       <TeleconsultingTabs
         tabs={TABS}
         activeTab={activeTab}

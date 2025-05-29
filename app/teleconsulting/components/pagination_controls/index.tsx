@@ -20,7 +20,7 @@ export function PaginationControls ({ currentPage, itemsPerPage, totalItems, onP
     <div className="flex justify-between items-center p-4 border-t border-gray-200">
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
-          <span className="text-sm text-gray-700">Exibir</span>
+          <span className="text-sm">Exibir</span>
           <select
             value={itemsPerPage}
             onChange={(e: ChangeEvent<HTMLSelectElement>) => onItemsPerPageChange(Number(e.target.value))}
@@ -31,12 +31,12 @@ export function PaginationControls ({ currentPage, itemsPerPage, totalItems, onP
             <option value={50}>50</option>
           </select>
         </div>
-        <span className="text-sm text-gray-700 hidden lg:block">
+        <span className="text-sm hidden lg:block">
           {totalItems > 0 ? `${startItem}-${endItem} de ${totalItems} itens` : 'Nenhum item encontrado'}
         </span>
       </div>
       <div className="flex items-center gap-2">
-        <span className="text-sm text-gray-700">Página</span>
+        <span className="text-sm">Página</span>
         <select
           value={currentPage}
           onChange={(e: ChangeEvent<HTMLSelectElement>) => onPageChange(Number(e.target.value))}
