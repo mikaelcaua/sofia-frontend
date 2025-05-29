@@ -31,7 +31,7 @@ export function PaginationControls ({ currentPage, itemsPerPage, totalItems, onP
             <option value={50}>50</option>
           </select>
         </div>
-        <span className="text-sm text-gray-700">
+        <span className="text-sm text-gray-700 hidden lg:block">
           {totalItems > 0 ? `${startItem}-${endItem} de ${totalItems} itens` : 'Nenhum item encontrado'}
         </span>
       </div>

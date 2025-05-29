@@ -10,9 +10,10 @@ interface CarouselItem {
 
 interface CarouselProps {
   items?: CarouselItem[]
+  className?: string
 }
 
-export function ImageCarousel({ items }: CarouselProps) {
+export function ImageCarousel({ items,className }: CarouselProps) {
   const defaultItems: CarouselItem[] = [
     {
       id: 1,
@@ -42,7 +43,7 @@ export function ImageCarousel({ items }: CarouselProps) {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-full max-w-md">
+    <div className={"flex flex-col items-center justify-center w-full max-w-md " + (className || "")}>
       <div className="w-full max-h-[50rem] flex items-center justify-center rounded-lg overflow-hidden">
         <Image unoptimized
           src={carouselItems[current].imageUrl}

@@ -41,21 +41,21 @@ export const TeleconsultingTable: React.FC<TeleconsultingTableProps> = ({
   statusOptions
 }) => {
   const getStatusBadge = (status: RequestInterface['status']) => {
-    const baseClasses = 'px-3 py-1 rounded-full text-xs font-medium inline-block';
+    const baseClasses = ' py-2 w-[9rem] rounded-md text-xs font-medium inline-block text-white flex items-center justify-center';
     switch (status) {
       case 'Avaliada':
-        return `${baseClasses} bg-green-100 text-green-800`;
+        return `${baseClasses} bg-green_color`;
       case 'Aguarda avaliação':
-        return `${baseClasses} bg-yellow-100 text-yellow-800`;
+        return `${baseClasses} bg-[#76766a]`;
       case 'Devolvida':
       case 'Cancelada':
-        return `${baseClasses} bg-red-100 text-red-800`;
+        return `${baseClasses} bg-red-100`;
       case 'Enviada':
-        return `${baseClasses} bg-blue-100 text-blue-800`;
+        return `${baseClasses} bg-blue-100`;
       case 'Rascunho':
-        return `${baseClasses} bg-gray-200 text-gray-700`;
+        return `${baseClasses} bg-gray-200`;
       default:
-        return `${baseClasses} bg-gray-100 text-gray-800`;
+        return `${baseClasses} bg-gray-100`;
     }
   };
 

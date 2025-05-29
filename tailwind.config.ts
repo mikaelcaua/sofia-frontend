@@ -11,8 +11,10 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        'secondary-blue': '#1351B4',
-        'footer-blue':'#071D41'
+        'secondary_blue': '#1351B4',
+        'footer_blue': '#071D41',
+        'text_color': 'rgb(51,51,51)',
+        'green_color':'#00A91C'
       },
       fontFamily: {
         rawline: ['var(--font-rawline)', 'sans-serif'],

@@ -3,51 +3,52 @@ import Link from "next/link";
 
 export default function Header() {
     return (
-        <header className="flex items-center p-4 shadow-md">
+        <header className="flex flex-col md:flex-row md:items-center p-2 shadow-md w-full">
             <div className="flex-shrink-0">
                 <Image
                     src="/images/logos/sofia_logo.svg"
                     alt="Logo Sofia"
-                    width={100}
-                    height={100}
+                    width={80}
+                    height={80}
                     priority
                 />
             </div>
 
-            <div className="flex flex-col w-full ml-4 gap-1">
-                <div className="flex justify-between items-center">
-                    <h1 className="text-[2rem]">SOFIA</h1>
+            <div className="flex flex-col w-full md:ml-4 mt-2 md:mt-0">
+                <div className="flex flex-col md:flex-row md:justify-between md:items-center">
+                    <h1 className="text-xl md:text-2xl">SOFIA</h1>
 
-                    <div className="flex items-center pr-10 gap-10">
-                        <nav className="flex text-[1rem] gap-4 pr-16">
-                            <Link href="#" className="text-secondary-blue hover:text-blue-600 transition-colors duration-200">
-                                Link de acesso 1
+                    <div className="flex flex-col md:flex-row md:items-center md:pr-10 md:gap-10 mt-2 md:mt-0">
+                        <nav className="hidden md:flex text-sm gap-4 md:pr-16">
+                            <Link href="#" className="text-secondary_blue hover:text-blue-600 transition-colors duration-200">
+                                Link 1
                             </Link>
-                            <Link href="#" className="text-secondary-blue hover:text-blue-600 transition-colors duration-200">
-                                Link de acesso 2
+                            <Link href="#" className="text-secondary_blue hover:text-blue-600 transition-colors duration-200">
+                                Link 2
                             </Link>
-                            <Link href="#" className="text-secondary-blue hover:text-blue-600 transition-colors duration-200">
-                                Link de acesso 3
+                            <Link href="#" className="text-secondary_blue hover:text-blue-600 transition-colors duration-200">
+                                Link 3
                             </Link>
-                            <Link href="#" className="text-secondary-blue hover:text-blue-600 transition-colors duration-200">
-                                Link de acesso 4
+                            <Link href="#" className="text-secondary_blue hover:text-blue-600 transition-colors duration-200">
+                                Link 4
                             </Link>
                         </nav>
 
-                        <ul className="flex gap-4">
+                        <ul className="hidden md:flex gap-4">
                             <Image
                                 src="/images/icons/phone_icon.svg"
-                                alt="Logo Sofia"
-                                width={32}
-                                height={32}
+                                alt="Ícone Telefone"
+                                width={28}
+                                height={28}
                                 priority
                             />
                         </ul>
                     </div>
                 </div>
 
-                <h1 className="text-[2rem] ">Sistema Online de Fortalecimento Interativo para Atenção Primária</h1>
-
+                <h1 className="text-base md:text-xl mt-2 md:mt-4">
+                    Sistema Online de Fortalecimento Interativo para Atenção Primária
+                </h1>
             </div>
         </header>
     );

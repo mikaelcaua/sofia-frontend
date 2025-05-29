@@ -115,7 +115,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" className={`${rawline.variable}`}>
-      <body className="font-rawline">
+      <body className="font-rawline text-text_color">
         <AuthProvider>
           <Header />
           {children}

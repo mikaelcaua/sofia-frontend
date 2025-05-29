@@ -100,7 +100,7 @@ const TeleconsultingPage = () => {
   const activeTabLabel = TABS.find(tab => tab.key === activeTab)?.label || '';
 
   return (
-    <main className="container px-4 py-6 min-h-screen bg-gray-50 flex flex-col gap-6">
+    <main className="w-full px-4 py-6 min-h-screen flex flex-col gap-6">
       <TeleconsultingHeader activeTabLabel={activeTabLabel} />
       
       <TeleconsultingTabs

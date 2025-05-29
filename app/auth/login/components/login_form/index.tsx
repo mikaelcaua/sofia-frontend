@@ -2,8 +2,9 @@
 
 import { BrCheckbox, BrInput, BrMessage } from '@govbr-ds/webcomponents-react'
 import { useState } from 'react'
-import BrButtonCustomize from '../br_button_customize'
+
 import Link from 'next/link'
+import BrButtonCustomize from '@/components/br_button_customize'
 
 type LoginData = {
   cpfOrEmail: string
@@ -121,7 +122,7 @@ export function LoginForm({ onLogin }: Props) {
     )
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col max-w-md space-y-4 min-w-[300px] items-center justify-center">
+    <form onSubmit={handleSubmit} className="flex flex-col max-w-md space-y-4 min-w-[300px] items-center justify-center shadow-xl px-10 py-10">
       <h2 className="self-start text-[1.5rem]">Identifique-se com:</h2>
 
       <BrInput
@@ -162,7 +163,7 @@ export function LoginForm({ onLogin }: Props) {
         name="manter conectado"
         aria-label="Mantenha-me conectado" />
 
-      <Link href="/auth/forgot-password" className="self-start text-secondary-blue hover:text-blue-600 transition-colors duration-200">
+      <Link href="/auth/forgot-password" className="self-start text-secondary_blue hover:text-blue-600 transition-colors duration-200">
         Esqueceu sua senha?
       </Link>
 
