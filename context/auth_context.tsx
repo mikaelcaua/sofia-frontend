@@ -1,14 +1,14 @@
 'use client'
 
-import AuthContextInterface from '@/interfaces/auth_context_interface'
-import User from '@/interfaces/user_interface'
+import {AuthContextInterface} from '@/interfaces/auth_context_interface'
+import {UserInteface} from '@/interfaces/user_interface'
 import AuthService from '@/services/auth_service'
 import { createContext, useContext, useState, ReactNode } from 'react'
 
 const AuthContext = createContext<AuthContextInterface | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-    const [user, setUser] = useState<User | null>(null)
+    const [user, setUser] = useState<UserInteface | null>(null)
     const authService: AuthService = new AuthService()
 
     const login = (email: string, password: string) => {

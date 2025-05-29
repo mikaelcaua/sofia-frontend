@@ -1,4 +1,4 @@
-import UserInteface from "@/interfaces/user_interface";
+import {UserInteface} from "@/interfaces/user_interface";
 
 export default class AuthService {
   
@@ -16,12 +16,12 @@ export default class AuthService {
             }
           ],
         requests:[
-          { id: '107387', status: 'Avaliada', solicitacao: 'Quais os riscos de...', resposta: 'O Brasil tem dois c...', respondidaEm: '10/01/2025', atualizadaEm: '10/01/2025' },
-          { id: '123456', status: 'Aguarda avaliação', solicitacao: 'Covid e hipertensão', resposta: 'O Brasil tem dois c...', respondidaEm: '10/01/2025', atualizadaEm: '10/01/2025' },
-          { id: '100001', status: 'Avaliada', solicitacao: 'Vacinação em crianças', resposta: 'É fundamental seguir...', respondidaEm: '15/01/2025', atualizadaEm: '15/01/2025' },
-          { id: '100002', status: 'Devolvida', solicitacao: 'Erro no preenchimento', resposta: 'Por favor, revise os dados.', respondidaEm: '18/01/2025', atualizadaEm: '18/01/2025' },
-          { id: '100003', status: 'Enviada', solicitacao: 'Dúvida sobre medicação', resposta: '', respondidaEm: '', atualizadaEm: '20/01/2025' },
-          { id: '100004', status: 'Rascunho', solicitacao: 'Iniciar solicitação de...', resposta: '', respondidaEm: '', atualizadaEm: '22/01/2025' },
+          { id: '107387', status: 'Avaliada', solicitation: 'Quais os riscos de...', response: 'O Brasil tem dois c...', respondedAt: '10/01/2025', updatedAt: '10/01/2025' },
+          { id: '123456', status: 'Aguarda avaliação', solicitation: 'Covid e hipertensão', response: 'O Brasil tem dois c...', respondedAt: '10/01/2025', updatedAt: '10/01/2025' },
+          { id: '100001', status: 'Avaliada', solicitation: 'Vacinação em crianças', response: 'É fundamental seguir...', respondedAt: '15/01/2025', updatedAt: '15/01/2025' },
+          { id: '100002', status: 'Devolvida', solicitation: 'Erro no preenchimento', response: 'Por favor, revise os dados.', respondedAt: '18/01/2025', updatedAt: '18/01/2025' },
+          { id: '100003', status: 'Enviada', solicitation: 'Dúvida sobre medicação', response: '', respondedAt: '', updatedAt: '20/01/2025' },
+          { id: '100004', status: 'Rascunho', solicitation: 'Iniciar solicitação de...', response: '', respondedAt: '', updatedAt: '22/01/2025' },
         ]
     }
   }

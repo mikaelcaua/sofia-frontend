@@ -14,7 +14,6 @@ export function PaginationControls ({ currentPage, itemsPerPage, totalItems, onP
   const startItem = (currentPage - 1) * itemsPerPage + 1;
   const endItem = Math.min(currentPage * itemsPerPage, totalItems);
 
-  // Garantir que sempre há pelo menos 1 página
   const pageOptions = Array.from({ length: Math.max(totalPages, 1) }, (_, i) => i + 1);
 
   return (
