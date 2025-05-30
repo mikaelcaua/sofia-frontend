@@ -27,7 +27,7 @@ const BrButtonCustomize: React.FC<BRButtonProps> = ({
     return (
         <button
             type={type}
-            className={`${baseClasses} ${emphasisClasses} ${className}`}
+            className={` ${emphasisClasses}  ${baseClasses} ${className}`}
             onClick={onClick}
             disabled={disabled}
             {...props}

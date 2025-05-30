@@ -21,7 +21,7 @@ const RoleSelectionScreen = () => {
     <main className="min-h-screen p-6">
       <div className="flex flex-col">
         <div className="mb-8">
-          <h1 className="text-2xl mb-2">
+          <h1 className="text-[1.5rem] mb-2">
             Selecionar Vínculo
           </h1>
           <p>

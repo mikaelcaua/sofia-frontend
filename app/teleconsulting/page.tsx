@@ -6,6 +6,7 @@ import { useAuth } from '@/context/auth_context';
 import { TeleconsultingHeader } from './components/teleconsulting_header';
 import { TabDefinition, TabKey, TeleconsultingTabs } from './components/teleconsulting_tabs';
 import { TeleconsultingTable, TeleconsultingFilters } from './components/teleconsulting_table';
+import { useRouter } from 'next/navigation';
 
 const initialFilters: TeleconsultingFilters = {
   id: '',
@@ -99,9 +100,15 @@ const TeleconsultingPage = () => {
 
   const activeTabLabel = TABS.find(tab => tab.key === activeTab)?.label || '';
 
+  const router = useRouter();
+
+  function goToSearchSolicitations(): void {
+    router.push('/teleconsulting/search-solicitation');
+  }
+
   return (
     <main className="w-full px-4 py-6 min-h-screen flex flex-col gap-6">
-      <TeleconsultingHeader activeTabLabel={activeTabLabel} />
+      <TeleconsultingHeader activeTabLabel={activeTabLabel} goToSearchSolicitations={goToSearchSolicitations} />
 
       <TeleconsultingTabs
         tabs={TABS}

@@ -63,7 +63,7 @@ export const TeleconsultingTable: React.FC<TeleconsultingTableProps> = ({
     <div className="bg-white rounded-lg shadow">
       <div className="overflow-x-auto">
         <table className="w-full">
-          <thead className="bg-gray-50">
+          <thead className="bg-[#F0F0F0]">
             <tr>
               <th className="text-left p-4 font-medium ">
                 <TableFilter
@@ -118,7 +118,7 @@ export const TeleconsultingTable: React.FC<TeleconsultingTableProps> = ({
               data.map((item) => (
                 <tr key={item.id} className="hover:bg-gray-50">
                   <td className="p-4 text-blue-600 font-medium">
-                    <Link href={`/Teleconsulting/${item.id}`} className="hover:underline">
+                    <Link href={`/teleconsulting/${item.id}`} className="hover:underline">
                       {item.id}
                     </Link>
                   </td>
@@ -128,12 +128,12 @@ export const TeleconsultingTable: React.FC<TeleconsultingTableProps> = ({
                     </span>
                   </td>
                   <td className="p-4 text-blue-600">
-                    <Link href={`/Teleconsulting/${item.id}`} className="hover:underline">
+                    <Link href={`/teleconsulting/${item.id}`} className="hover:underline">
                       {item.solicitation}
                     </Link>
                   </td>
                   <td className="p-4 text-blue-600">
-                    <Link href={`/Teleconsulting/${item.id}`} className="hover:underline">
+                    <Link href={`/teleconsulting/${item.id}`} className="hover:underline">
                       {item.response || 'N/A'}
                     </Link>
                   </td>
