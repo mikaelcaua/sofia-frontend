@@ -38,10 +38,11 @@ export const TeleconsultingTable: React.FC<TeleconsultingTableProps> = ({
   onPageChange,
   onItemsPerPageChange,
   idOptions,
-  statusOptions
+  statusOptions,
 }) => {
   const getStatusBadge = (status: SolicitationInterface['status']) => {
-    const baseClasses = ' py-2 w-[9rem] rounded-md text-xs font-medium inline-block text-white flex items-center justify-center';
+    const baseClasses =
+      ' py-2 w-[9rem] rounded-md text-xs font-medium inline-block text-white flex items-center justify-center';
     switch (status) {
       case 'Avaliada':
         return `${baseClasses} bg-green_color`;
@@ -123,9 +124,7 @@ export const TeleconsultingTable: React.FC<TeleconsultingTableProps> = ({
                     </Link>
                   </td>
                   <td className="p-4">
-                    <span className={getStatusBadge(item.status)}>
-                      {item.status}
-                    </span>
+                    <span className={getStatusBadge(item.status)}>{item.status}</span>
                   </td>
                   <td className="p-4 text-blue-600">
                     <Link href={`/teleconsulting/${item.id}`} className="hover:underline">

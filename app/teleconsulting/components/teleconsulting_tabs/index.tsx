@@ -21,7 +21,7 @@ export const TeleconsultingTabs: React.FC<TeleconsultingTabsProps> = ({
   tabs,
   activeTab,
   tabCounts,
-  onTabChange
+  onTabChange,
 }) => {
   return (
     <div className="w-full">
@@ -40,11 +40,13 @@ export const TeleconsultingTabs: React.FC<TeleconsultingTabsProps> = ({
               >
                 <span className="flex items-center">
                   {tab.label}
-                  <span className={`ml-2 py-0.5 px-2 rounded-full text-xs font-medium ${
-                    activeTab === tab.key
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'bg-gray-100 text-gray-900'
-                  }`}>
+                  <span
+                    className={`ml-2 py-0.5 px-2 rounded-full text-xs font-medium ${
+                      activeTab === tab.key
+                        ? 'bg-blue-100 text-blue-700'
+                        : 'bg-gray-100 text-gray-900'
+                    }`}
+                  >
                     ({tabCounts[tab.key] || 0})
                   </span>
                 </span>
@@ -53,7 +55,7 @@ export const TeleconsultingTabs: React.FC<TeleconsultingTabsProps> = ({
           </nav>
         </div>
       </div>
-      
+
       <style jsx>{`
         .scrollbar-hide {
           -ms-overflow-style: none;

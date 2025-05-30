@@ -26,17 +26,20 @@ const TeleconsultingPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState(initialFilters);
 
-  const TABS: ReadonlyArray<TabDefinition> = useMemo(() => ([
-    { key: 'respondidas', label: 'Respondidas', status: ['Avaliada', 'Aguarda avaliação'] },
-    { key: 'devolvidas', label: 'Devolvidas/Canceladas', status: ['Devolvida', 'Cancelada'] },
-    { key: 'enviadas', label: 'Solicitações Enviadas', status: ['Enviada'] },
-    { key: 'rascunhos', label: 'Rascunhos', status: ['Rascunho'] }
-  ]), []);
+  const TABS: ReadonlyArray<TabDefinition> = useMemo(
+    () => [
+      { key: 'respondidas', label: 'Respondidas', status: ['Avaliada', 'Aguarda avaliação'] },
+      { key: 'devolvidas', label: 'Devolvidas/Canceladas', status: ['Devolvida', 'Cancelada'] },
+      { key: 'enviadas', label: 'Solicitações Enviadas', status: ['Enviada'] },
+      { key: 'rascunhos', label: 'Rascunhos', status: ['Rascunho'] },
+    ],
+    []
+  );
 
   const handleFilterChange = (field: keyof TeleconsultingFilters, value: string) => {
     setFilters((prev: any) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
     setCurrentPage(1);
   };
@@ -48,15 +51,15 @@ const TeleconsultingPage = () => {
   };
 
   const filteredData = useMemo(() => {
-    const currentTab = TABS.find(tab => tab.key === activeTab);
+    const currentTab = TABS.find((tab) => tab.key === activeTab);
     if (!currentTab) return [];
 
-    return MOCK_DATA.filter(item => {
+    return MOCK_DATA.filter((item) => {
       if (!currentTab.status.includes(item.status)) {
         return false;
       }
 
-      return (Object.keys(filters) as Array<keyof TeleconsultingFilters>).every(key => {
+      return (Object.keys(filters) as Array<keyof TeleconsultingFilters>).every((key) => {
         const filterValue = filters[key];
         if (!filterValue) return true;
 
@@ -76,29 +79,30 @@ const TeleconsultingPage = () => {
 
   const tabCounts = useMemo(() => {
     const counts: { [K in TabKey]?: number } = {};
-    TABS.forEach(tab => {
-      counts[tab.key] = MOCK_DATA.filter(item => tab.status.includes(item.status)).length;
+    TABS.forEach((tab) => {
+      counts[tab.key] = MOCK_DATA.filter((item) => tab.status.includes(item.status)).length;
     });
     return counts;
   }, [MOCK_DATA, TABS]);
 
-  const idOptions = useMemo(() =>
-    MOCK_DATA.map(item => ({ value: String(item.id), label: String(item.id) })),
+  const idOptions = useMemo(
+    () => MOCK_DATA.map((item) => ({ value: String(item.id), label: String(item.id) })),
     [MOCK_DATA]
   );
 
-  const statusOptions = useMemo(() => (
-    [
+  const statusOptions = useMemo(
+    () => [
       { value: 'Avaliada', label: 'Avaliada' },
       { value: 'Aguarda avaliação', label: 'Aguarda avaliação' },
       { value: 'Devolvida', label: 'Devolvida' },
       { value: 'Cancelada', label: 'Cancelada' },
       { value: 'Enviada', label: 'Enviada' },
       { value: 'Rascunho', label: 'Rascunho' },
-    ]
-  ), []);
+    ],
+    []
+  );
 
-  const activeTabLabel = TABS.find(tab => tab.key === activeTab)?.label || '';
+  const activeTabLabel = TABS.find((tab) => tab.key === activeTab)?.label || '';
 
   const router = useRouter();
 
@@ -108,7 +112,10 @@ const TeleconsultingPage = () => {
 
   return (
     <main className="w-full px-4 py-6 min-h-screen flex flex-col gap-6">
-      <TeleconsultingHeader activeTabLabel={activeTabLabel} goToSearchSolicitations={goToSearchSolicitations} />
+      <TeleconsultingHeader
+        activeTabLabel={activeTabLabel}
+        goToSearchSolicitations={goToSearchSolicitations}
+      />
 
       <TeleconsultingTabs
         tabs={TABS}

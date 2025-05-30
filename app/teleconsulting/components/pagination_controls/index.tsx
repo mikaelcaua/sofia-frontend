@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent } from 'react';
 
 interface PaginationControlsProps {
   currentPage: number;
@@ -8,8 +8,13 @@ interface PaginationControlsProps {
   onItemsPerPageChange: (items: number) => void;
 }
 
-export function PaginationControls ({ currentPage, itemsPerPage, totalItems, onPageChange, onItemsPerPageChange }: PaginationControlsProps) {
-    
+export function PaginationControls({
+  currentPage,
+  itemsPerPage,
+  totalItems,
+  onPageChange,
+  onItemsPerPageChange,
+}: PaginationControlsProps) {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startItem = (currentPage - 1) * itemsPerPage + 1;
   const endItem = Math.min(currentPage * itemsPerPage, totalItems);
@@ -23,7 +28,9 @@ export function PaginationControls ({ currentPage, itemsPerPage, totalItems, onP
           <span className="text-sm">Exibir</span>
           <select
             value={itemsPerPage}
-            onChange={(e: ChangeEvent<HTMLSelectElement>) => onItemsPerPageChange(Number(e.target.value))}
+            onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+              onItemsPerPageChange(Number(e.target.value))
+            }
             className="border border-gray-300 rounded px-2 py-1 text-sm"
           >
             <option value={10}>10</option>
@@ -32,7 +39,9 @@ export function PaginationControls ({ currentPage, itemsPerPage, totalItems, onP
           </select>
         </div>
         <span className="text-sm hidden lg:block">
-          {totalItems > 0 ? `${startItem}-${endItem} de ${totalItems} itens` : 'Nenhum item encontrado'}
+          {totalItems > 0
+            ? `${startItem}-${endItem} de ${totalItems} itens`
+            : 'Nenhum item encontrado'}
         </span>
       </div>
       <div className="flex items-center gap-2">
@@ -43,8 +52,10 @@ export function PaginationControls ({ currentPage, itemsPerPage, totalItems, onP
           className="border border-gray-300 rounded px-2 py-1 text-sm"
           disabled={totalItems === 0}
         >
-          {pageOptions.map(page => (
-            <option key={page} value={page}>{String(page).padStart(2, '0')}</option>
+          {pageOptions.map((page) => (
+            <option key={page} value={page}>
+              {String(page).padStart(2, '0')}
+            </option>
           ))}
         </select>
         <div className="flex">
@@ -66,4 +77,4 @@ export function PaginationControls ({ currentPage, itemsPerPage, totalItems, onP
       </div>
     </div>
   );
-};
+}
