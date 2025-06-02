@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { SolicitationInterface } from '@/interfaces/solicitation_interface';
 import { useAuth } from '@/context/auth_context';
 import { TeleconsultingHeader } from './components/teleconsulting_header';
 import { TabDefinition, TabKey, TeleconsultingTabs } from './components/teleconsulting_tabs';
 import { TeleconsultingTable, TeleconsultingFilters } from './components/teleconsulting_table';
 import { useRouter } from 'next/navigation';
+import { SolicitationService } from '@/services/solicitation_service';
 
 const initialFilters: TeleconsultingFilters = {
   id: '',
@@ -19,7 +20,20 @@ const initialFilters: TeleconsultingFilters = {
 
 const TeleconsultingPage = () => {
   const { user } = useAuth();
-  const MOCK_DATA: SolicitationInterface[] = user?.solicitations || [];
+  const solicitationService = new SolicitationService();
+
+  const [solicitationsData, setSolicitationsData] = useState<SolicitationInterface[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await solicitationService.getSolicitationsByUserId(user?.id || '');
+      setSolicitationsData(data);
+    };
+
+    if (user?.id) {
+      fetchData();
+    }
+  }, [user?.id]);
 
   const [activeTab, setActiveTab] = useState<TabKey>('respondidas');
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -54,7 +68,7 @@ const TeleconsultingPage = () => {
     const currentTab = TABS.find((tab) => tab.key === activeTab);
     if (!currentTab) return [];
 
-    return MOCK_DATA.filter((item) => {
+    return solicitationsData.filter((item) => {
       if (!currentTab.status.includes(item.status)) {
         return false;
       }
@@ -67,7 +81,7 @@ const TeleconsultingPage = () => {
         return itemValue.includes(filterValue.toLowerCase());
       });
     });
-  }, [MOCK_DATA, filters, activeTab, TABS]);
+  }, [solicitationsData, filters, activeTab, TABS]);
 
   const paginatedData = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -80,14 +94,14 @@ const TeleconsultingPage = () => {
   const tabCounts = useMemo(() => {
     const counts: { [K in TabKey]?: number } = {};
     TABS.forEach((tab) => {
-      counts[tab.key] = MOCK_DATA.filter((item) => tab.status.includes(item.status)).length;
+      counts[tab.key] = solicitationsData.filter((item) => tab.status.includes(item.status)).length;
     });
     return counts;
-  }, [MOCK_DATA, TABS]);
+  }, [solicitationsData, TABS]);
 
   const idOptions = useMemo(
-    () => MOCK_DATA.map((item) => ({ value: String(item.id), label: String(item.id) })),
-    [MOCK_DATA]
+    () => solicitationsData.map((item) => ({ value: String(item.id), label: String(item.id) })),
+    [solicitationsData]
   );
 
   const statusOptions = useMemo(

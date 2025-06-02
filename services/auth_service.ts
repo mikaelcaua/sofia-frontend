@@ -4,11 +4,11 @@ export default class AuthService {
   public login(username: string, password: string): UserInteface {
     return {
       email: '',
-      id: 0,
+      id: '0',
       name: '',
       roles: [
         {
-          id: 1,
+          id: '1',
           name: 'Solicitante',
           status: 'SIM',
           description: 'Solicitante',

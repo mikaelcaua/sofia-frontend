@@ -8,11 +8,12 @@ import BrButtonCustomize from '@/components/br_button_customize';
 const RoleSelectionScreen = () => {
   const router = useRouter();
   const { user } = useAuth();
+
   const roles: RoleInterface[] = user?.roles || [];
 
-  const [selectedRole, setSelectedRole] = useState<number | null>(null);
+  const [selectedRole, setSelectedRole] = useState<string | null>(null);
 
-  const goToRoleSelect = (roleId: number) => {
+  const goToRoleSelect = (roleId: string) => {
     setSelectedRole(roleId);
     router.push('/teleconsulting');
   };

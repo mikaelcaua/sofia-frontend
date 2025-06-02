@@ -1,5 +1,5 @@
 export interface RoleInterface {
-  id: number;
+  id: string;
   name: string;
   status: 'SIM' | 'NÃO';
   description: string;
