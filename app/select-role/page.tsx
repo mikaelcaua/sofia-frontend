@@ -43,8 +43,9 @@ const RoleSelectionScreen = () => {
 
                 <div className="flex-1 flex justify-center">
                   <span
-                    className={`px-10 py-2 rounded-md text-sm ${role.status === 'SIM' ? 'bg-[#00A91C] text-white' : 'bg-red-500 text-white'
-                      }`}
+                    className={`px-10 py-2 rounded-md text-sm ${
+                      role.status === 'SIM' ? 'bg-[#00A91C] text-white' : 'bg-red-500 text-white'
+                    }`}
                   >
                     {role.status}
                   </span>
@@ -71,8 +72,9 @@ const RoleSelectionScreen = () => {
                   <span className=" font-semibold uppercase tracking-wide">Status</span>
                   <div>
                     <span
-                      className={`inline-block px-3 py-1 rounded-md text-xs ${role.status === 'SIM' ? 'bg-[#00A91C] text-white' : 'bg-red-500 text-white'
-                        }`}
+                      className={`inline-block px-3 py-1 rounded-md text-xs ${
+                        role.status === 'SIM' ? 'bg-[#00A91C] text-white' : 'bg-red-500 text-white'
+                      }`}
                     >
                       {role.status}
                     </span>

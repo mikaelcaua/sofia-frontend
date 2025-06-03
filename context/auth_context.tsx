@@ -9,9 +9,9 @@ const AuthContext = createContext<AuthContextInterface | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<UserInteface | null>(null);
   const authService: AuthService = new AuthService();
-  const login = (email: string, password: string) => {
+  const login = async (email: string, password: string) => {
     try {
-      const userData = authService.login(email, password);
+      const userData = await authService.login(email, password);
       setUser(userData);
       return true;
     } catch (error) {

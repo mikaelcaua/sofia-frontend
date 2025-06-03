@@ -13,8 +13,8 @@ export default function LoginScreen() {
     <main className="flex items-center justify-center min-h-screen py-8 gap-[10%] px-4">
       <ImageCarousel className="hidden lg:block" />
       <LoginForm
-        onLogin={(cpfOrEmail: string, password: string) => {
-          if (login(cpfOrEmail, password)) {
+        onLogin={async (cpfOrEmail: string, password: string) => {
+          if (await login(cpfOrEmail, password)) {
             router.push('/select-role');
           }
         }}
