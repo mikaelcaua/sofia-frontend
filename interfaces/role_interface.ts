@@ -1,5 +1,5 @@
-export default interface RoleInterface {
-  id: number;
+export interface RoleInterface {
+  id: string;
   name: string;
   status: 'SIM' | 'NÃO';
   description: string;
