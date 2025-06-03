@@ -5,4 +5,5 @@ export interface UserInteface {
   name: string;
   email: string;
   roles: RoleInterface[];
+  token: string;
 }

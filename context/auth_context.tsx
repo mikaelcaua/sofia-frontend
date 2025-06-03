@@ -9,7 +9,6 @@ const AuthContext = createContext<AuthContextInterface | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<UserInteface | null>(null);
   const authService: AuthService = new AuthService();
-  const teste = 2;
   const login = (email: string, password: string) => {
     try {
       const userData = authService.login(email, password);

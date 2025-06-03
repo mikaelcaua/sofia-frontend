@@ -6,7 +6,20 @@ export class SolicitationService {
       {
         id: id,
         status: 'Devolvida',
-        solicitation: 'Exemplo de solicitação',
+        solicitation: 'solicitacao por id',
+        response: '',
+        respondedAt: '',
+        updatedAt: '',
+      },
+    ];
+  }
+
+  async getSolicitationsWithWords(id: string): Promise<SolicitationInterface[]> {
+    return [
+      {
+        id: id,
+        status: 'Devolvida',
+        solicitation: 'Solicitacao com palavras chaves',
         response: '',
         respondedAt: '',
         updatedAt: '',

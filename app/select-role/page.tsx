@@ -43,9 +43,8 @@ const RoleSelectionScreen = () => {
 
                 <div className="flex-1 flex justify-center">
                   <span
-                    className={`px-10 py-2 rounded-md text-sm ${
-                      role.status === 'SIM' ? 'bg-[#00A91C] text-white' : 'bg-red-500 text-white'
-                    }`}
+                    className={`px-10 py-2 rounded-md text-sm ${role.status === 'SIM' ? 'bg-[#00A91C] text-white' : 'bg-red-500 text-white'
+                      }`}
                   >
                     {role.status}
                   </span>
@@ -56,12 +55,9 @@ const RoleSelectionScreen = () => {
                 </div>
 
                 <div className="flex-1 flex justify-center">
-                  <button
-                    onClick={() => goToRoleSelect(role.id)}
-                    className="px-4 py-2 rounded-md text-sm transition-colors bg-blue-500 text-white hover:bg-blue-600"
-                  >
+                  <BrButtonCustomize onClick={() => goToRoleSelect(role.id)} emphasis="primary">
                     Selecionar
-                  </button>
+                  </BrButtonCustomize>
                 </div>
               </div>
 
@@ -75,9 +71,8 @@ const RoleSelectionScreen = () => {
                   <span className=" font-semibold uppercase tracking-wide">Status</span>
                   <div>
                     <span
-                      className={`inline-block px-3 py-1 rounded-md text-xs ${
-                        role.status === 'SIM' ? 'bg-[#00A91C] text-white' : 'bg-red-500 text-white'
-                      }`}
+                      className={`inline-block px-3 py-1 rounded-md text-xs ${role.status === 'SIM' ? 'bg-[#00A91C] text-white' : 'bg-red-500 text-white'
+                        }`}
                     >
                       {role.status}
                     </span>

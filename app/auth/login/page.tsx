@@ -1,4 +1,5 @@
 'use client';
+
 import { ImageCarousel } from '@/app/auth/login/components/carousel';
 import { useAuth } from '@/context/auth_context';
 import { useRouter } from 'next/navigation';
