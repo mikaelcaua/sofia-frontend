@@ -1,50 +1,54 @@
-'use client'
-import { useState } from 'react'
-import Image from 'next/image'
+'use client';
+import { useState } from 'react';
+import Image from 'next/image';
 
 interface CarouselItem {
-  id: number
-  imageUrl: string
-  alt: string
+  id: number;
+  imageUrl: string;
+  alt: string;
 }
 
 interface CarouselProps {
-  items?: CarouselItem[]
+  items?: CarouselItem[];
+  className?: string;
 }
 
-export default function ImageCarousel({ items }: CarouselProps) {
+export function ImageCarousel({ items, className }: CarouselProps) {
   const defaultItems: CarouselItem[] = [
     {
       id: 1,
       imageUrl: '/images/auth/sofia_advertisement.png',
-      alt: 'Anúncio Sofia App'
+      alt: 'Anúncio Sofia App',
     },
     {
       id: 2,
       imageUrl: '/images/auth/sofia_advertisement.png',
-      alt: 'Anúncio Sofia App'
+      alt: 'Anúncio Sofia App',
     },
-  ]
+  ];
 
   const carouselItems = items || defaultItems;
   const [current, setCurrent] = useState(0);
 
   const prev = () => {
-    setCurrent((prevIndex) => (prevIndex === 0 ? carouselItems.length - 1 : prevIndex - 1))
-  }
+    setCurrent((prevIndex) => (prevIndex === 0 ? carouselItems.length - 1 : prevIndex - 1));
+  };
 
   const next = () => {
-    setCurrent((prevIndex) => (prevIndex === carouselItems.length - 1 ? 0 : prevIndex + 1))
-  }
+    setCurrent((prevIndex) => (prevIndex === carouselItems.length - 1 ? 0 : prevIndex + 1));
+  };
 
   const goToSlide = (index: number) => {
-    setCurrent(index)
-  }
+    setCurrent(index);
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full max-w-md">
+    <div
+      className={'flex flex-col items-center justify-center w-full max-w-md ' + (className || '')}
+    >
       <div className="w-full max-h-[50rem] flex items-center justify-center rounded-lg overflow-hidden">
-        <Image unoptimized
+        <Image
+          unoptimized
           src={carouselItems[current].imageUrl}
           width={500}
           height={700}
@@ -60,7 +64,12 @@ export default function ImageCarousel({ items }: CarouselProps) {
           aria-label="Página anterior"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
         </button>
 
@@ -69,10 +78,9 @@ export default function ImageCarousel({ items }: CarouselProps) {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-200 ${current === index
-                ? 'bg-blue-600 scale-110'
-                : 'bg-gray-300 hover:bg-gray-400'
-                }`}
+              className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                current === index ? 'bg-blue-600 scale-110' : 'bg-gray-300 hover:bg-gray-400'
+              }`}
               aria-label={`Ir para página ${index + 1}`}
             />
           ))}

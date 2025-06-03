@@ -1,8 +1,9 @@
-import RoleInterface from "./role_interface"
+import { RoleInterface } from './role_interface';
 
-export default interface UserInteface {
-    id: number
-    name: string
-    email: string
-    roles: RoleInterface[]
+export interface UserInteface {
+  id: string;
+  name: string;
+  email: string;
+  roles: RoleInterface[];
+  token: string;
 }
