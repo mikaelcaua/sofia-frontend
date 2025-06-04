@@ -1,5 +1,5 @@
 'use client';
-import { useAuth } from '@/context/auth_context';
+import { useAuth } from '@/hooks/use_auth';
 import { RoleInterface } from '@/interfaces/role_interface';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';

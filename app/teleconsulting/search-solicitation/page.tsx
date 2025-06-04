@@ -6,6 +6,7 @@ import { useState, useMemo, use } from 'react';
 import { TeleconsultingTable, TeleconsultingFilters } from '../components/teleconsulting_table';
 import { SolicitationInterface } from '@/interfaces/solicitation_interface';
 import { useRouter } from 'next/navigation';
+import { SolicitationService } from '@/services/solicitation_service';
 
 const initialFilters: TeleconsultingFilters = {
   id: '',
@@ -32,24 +33,13 @@ const SearchSolicitationScreen = () => {
     setCurrentPage(1);
   };
 
+  const solicitationsService = new SolicitationService();
+
   const handleSearch = async () => {
-    const data = await getSolicitationsWithWords(inputText);
+    const data = await solicitationsService.getSolicitationsWithWords(inputText);
     setSolicitationsData(data);
     setCurrentPage(1);
     setFilters(initialFilters);
-  };
-
-  const getSolicitationsWithWords = async (searchedWord: string): Promise<SolicitationInterface[]> => {
-    return [
-      {
-        id: '10',
-        status: 'Devolvida',
-        solicitation: 'Solicitação com palavras-chave',
-        response: '',
-        respondedAt: '',
-        updatedAt: '',
-      },
-    ];
   };
 
   const filteredData = useMemo(() => {
@@ -95,20 +85,21 @@ const SearchSolicitationScreen = () => {
       <h1 className="text-2xl mb-2">Pergunte à SOFIA</h1>
 
       <div className="flex flex-col gap-4">
-        <section className='flex'>
-          <div className='flex flex-col gap-2'>
+        <section className="flex">
+          <div className="flex flex-col gap-2">
             <p>Olá, Solicitante!</p>
             <p>
-              Antes de prosseguir com a sua solicitação, verifique se na SOFIA já existe uma resposta
-              para o questionamento que você procura.
+              Antes de prosseguir com a sua solicitação, verifique se na SOFIA já existe uma
+              resposta para o questionamento que você procura.
             </p>
           </div>
-          <BrButtonCustomize emphasis="primary" onClick={() => router.push('search-solicitation/new-teleconsulting')}>
+          <BrButtonCustomize
+            emphasis="primary"
+            onClick={() => router.push('search-solicitation/new-teleconsulting')}
+          >
             Solicitar Nova Teleconsultoria
           </BrButtonCustomize>
         </section>
-
-
 
         <div className="flex flex-col gap-2">
           <p>Por favor, descreva sua pergunta:</p>
@@ -130,7 +121,6 @@ const SearchSolicitationScreen = () => {
         </div>
 
         {solicitationsData.length > 0 && (
-
           <div>
             <BrMessage state="warning" show-icon="true" className="min-w-72 w-full">
               Perguntas que possivelmente possuam uma resposta para você

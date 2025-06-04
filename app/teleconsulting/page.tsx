@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { SolicitationInterface } from '@/interfaces/solicitation_interface';
-import { useAuth } from '@/context/auth_context';
+import { useAuth } from '@/hooks/use_auth';
 import { TeleconsultingHeader } from './components/teleconsulting_header';
 import { TabDefinition, TabKey, TeleconsultingTabs } from './components/teleconsulting_tabs';
 import { TeleconsultingTable, TeleconsultingFilters } from './components/teleconsulting_table';
