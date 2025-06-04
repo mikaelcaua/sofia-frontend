@@ -1,7 +1,7 @@
 'use client';
 
 import { ImageCarousel } from '@/app/auth/login/components/carousel';
-import { useAuth } from '@/context/auth_context';
+import { useAuth } from '@/hooks/use_auth';
 import { useRouter } from 'next/navigation';
 import { LoginForm } from './components/login_form';
 
